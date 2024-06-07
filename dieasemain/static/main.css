@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url(https://t.ctcdn.com.br/zaLL6qWBEDGnSWtO63P-Ut7P99w=/3904x2196/smart/i514616.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}

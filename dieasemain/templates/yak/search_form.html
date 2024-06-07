@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form method="get" action="{{ url_for('yak.search') }}">
+    <input type="text" name="search_query1" placeholder="증상을 입력해봐요" value="{{ request.args.get('search_query1', '') }}">
+    <button type="submit">검색</button>
+</form>
+<form action="{{ url_for('yak.search') }}" method="GET">
+    <p> 한번에 불러올 갯수를 선택하세요
+        <select id="numOfRows" name="numOfRows">
+            <option value="5" {% if numOfRows== 5 %}selected{% endif %}>5</option>
+            <option value="10" {% if numOfRows== 10 %}selected{% endif %}>10</option>
+            <option value="20" {% if numOfRows== 20 %}selected{% endif %}>20</option>
+            <option value="30" {% if numOfRows== 30 %}selected{% endif %}>30</option>
+            <script>
+                // 페이지당 항목 수를 변경할 때마다 페이지를 다시로드하여 URL에 변경된 값이 반영되도록 함
+                document.getElementById('numOfRows').addEventListener('change', function() {
+                    var selectedNumOfRows = this.value;
+                    var urlParams = new URLSearchParams(window.location.search);
+                    urlParams.set('numOfRows', selectedNumOfRows);
+                    window.location.href = window.location.pathname + '?' + urlParams.toString();
+                });
+            </script>
+        </select>
+    </p>
+    <!--            <input type="text"  placeholder="약 이름을 입력하세요" name="search_query">-->
+    <!--                <button class="btn btn-outline-secondary" type="submit">검색</button>-->
+</form>
+{% for item in detail_data %}
+
+<h1>제품명 : {{ detail_data['name'] }}</h1>
+
+{% endfor %}
+
+{% if data %}
+<p>총 {{ totalCount }} 개의 약 정보가 있습니다.</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>제품명</th>
+        <th>제조사</th>
+        <th>효능효과</th>
+        <th>사용방법</th>
+        <th>제품 사진</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in data %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.entpName }}</td>
+        <td>{{ item.efcyQesitm }}</td>
+        <td>{{ item.useMethodQesitm }}</td>
+        <td><img src="{{ item.itemImage or url_for('static', filename='default_image.png') }}" width="200" height="200"
+                 alt="제품 이미지"></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+ <p>페이지: {{ current_page }} / {{ total_pages }}</p>
+    <div>
+        {% set start_page = ((current_page - 1) // 10) * 10 + 1 %}
+        {% set end_page = start_page + 9 %}
+        {% if end_page > total_pages %}
+            {% set end_page = total_pages %}
+        {% endif %}
+
+        {% if current_page > 10 %}
+            <a href="{{ url_for('yak.search', page=start_page-10, search_query1=request.args.get('search_query1', ''), numOfRows=numOfRows) }}">이전</a>
+        {% endif %}
+
+        {% for page in range(start_page, end_page + 1) %}
+            {% if page == current_page %}
+                <strong>{{ page }}</strong>
+            {% else %}
+                <a href="{{ url_for('yak.search', page=page, search_query1=request.args.get('search_query1', ''), numOfRows=numOfRows) }}">{{ page }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if end_page < total_pages %}
+            <a href="{{ url_for('yak.search', page=start_page+10, search_query1=request.args.get('search_query1', ''), numOfRows=numOfRows) }}">다음</a>
+        {% endif %}
+    </div>
+
+
+{% else %}
+<p>검색 결과가 없습니다.</p>
+{% endif %}
+
+{% endblock %}

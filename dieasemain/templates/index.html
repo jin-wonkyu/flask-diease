@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+
+<div class="wrap">
+    <div class="intro_bg">
+        <img src="{{ url_for('static', filename='2.jpg') }}" alt="Intro Image">
+    </div>
+    <div class="header">
+
+        <div class="intro_text">
+            <h1>총알 오징어, 세마리에 </h1>
+            <h4 class="contents1">냐냐냐냐냐냐냐냐</h4>
+        </div>
+    </div>
+    <ul class="amount">
+        <li>
+            <div>
+                <button type="button" onclick="location.href='https://www.nhis.or.kr/nhis/index.do'" style="width: 70%; height: 100%" >국민건강보험</button>
+<!--                <div class="contents1">11</div>-->
+<!--                <div class="result">22</div>-->
+            </div>
+        </li>
+        <li>
+            <div>
+                <button type="button" onclick="location.href='https://www.kdca.go.kr/'" style="width: 70%; height: 100%" >질병관리청</button>
+            </div>
+        </li>
+        <li>
+            <div>
+                <button type="button" onclick="location.href='https://www.bloodinfo.net/knrcbs/main.do'" style="width: 70%; height: 100%" >대한적십자사</button>
+            </div>
+        </li>
+        <li>
+            <div>
+                <button type="button" onclick="location.href='https://www.koiha.or.kr/web/kr/index.do'" style="width: 70%; height: 100%" >의료기관평가인증원</button>
+            </div>
+        </li>
+    </ul>
+
+    <div class="main_text0">
+        <h1>ABOUT</h1>
+        <div class="contents1">건강 걱정을 함께 나누면서 당신을 응원할게요. 언제든지 내게 말해주세요</div>
+
+        <ul class="icons">
+            <li>
+                <div class="icon_img">
+                    <img src="{{ url_for('static', filename='5.jpg') }}">
+                </div>
+                <div class="contents1_bold">질환 확인</div>
+                <div class="contents1">
+                    증상 입력을 통한 질환 정보 제공
+                </div>
+            </li>
+            <li>
+                <div class="icon_img">
+                    <img src="{{ url_for('static', filename='4.jpg') }}">
+                </div>
+                <div class="contents1_bold">의약품 파악</div>
+                <div class="contents1">
+                    효능·주의사항·부작용·보관법
+                </div>
+            </li>
+            <li>
+                <div class="icon_img">
+                    <img src="{{ url_for('static', filename='7.jpg') }}">
+                </div>
+                <div class="contents1_bold">헬스케어</div>
+                <div class="contents1">
+                    운동을 통한 삶의 질 향상
+                </div>
+            </li>
+        </ul>
+
+
+    </div>
+
+</div>
+
+{% endblock %}

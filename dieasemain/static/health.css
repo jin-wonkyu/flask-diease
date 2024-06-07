@@ -1,0 +1,174 @@
+.health_wrapH {
+    width: 1000px;
+    margin: 100px auto;
+}
+
+.health_title {
+    margin-bottom: 30px;
+}
+
+.health_title strong {
+    font-size: 3rem;
+    color: #000000;
+}
+
+.health_title p {
+    margin-top: 5px;
+    font-size: 1.4rem;
+    color: #000000;
+}
+
+/*밑부분*/
+
+.bt_wrapH {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.bt_wrapH a {
+    display: inline-block;
+    min-width: 80px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-size: 1.4rem;
+}
+
+.bt_wrapH a:first-child {
+    margin-left: 0;
+}
+
+.bt_wrapH a.on {
+    background: #ffffff;
+    color: #000000;
+}
+
+.health_list {
+    width: 100%;
+    border-top: 2px solid #000000;
+}
+
+.health_list > div {
+    /*border-bottom: 1px solid #000000;*/
+    /*font-size: 0;*/
+}
+
+.health_list > div.top {
+    border-bottom: 1px solid #000000;
+    color: #000000;
+}
+
+.health_list > div:last-child {
+    /*border-bottom: 1px solid #000000;*/
+}
+
+.health_list > div > div {
+    padding: 15px 0;
+    text-align: center;
+    font-size: 1.4rem;
+}
+
+.health_list .number {
+    background: #dddddd;
+    width: 2rem;
+    position: absolute;
+    padding: 1px 1px 1px 1px;
+    text-align: center;
+    border-radius: 10rem;
+}
+
+.health_list > div > div.timer {
+    font-size: 3rem;
+}
+
+.health_list > div.top > div {
+    font-weight: 600;
+}
+
+.health_list .num {
+    width: 10%;
+}
+
+.health_list .title {
+    width: 100%;
+    text-align: center;
+}
+
+#timer {
+    background-color: #F2F2F2;
+    font-size: 8rem;
+}
+
+.health_list > div > button {
+    font-size: 16px;
+    padding: 20px 20px 20px 20px;
+    box-shadow: 1px 1px 1px 1px #000000;
+    background: #ddd;
+    border-radius: 25px;
+    text-shadow: 0px 1px 0px #dddddd;
+    text-decoration: none;
+    font-weight: bold;
+    border: 6px double #dddd;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.health_list .top .title {
+    text-align: center;
+    background-color: #dddd;
+}
+
+.health_list .writer {
+    width: 10%;
+}
+
+.health_list .date {
+    width: 10%;
+}
+
+.health_list .count {
+    width: 10%;
+}
+
+.health_page {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 0;
+}
+
+.health_page a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    box-sizing: border-box;
+    border: 1px solid #000000;
+    border-left: 0;
+    vertical-align: middle;
+    line-height: 100%;
+}
+
+.health_page a.bt {
+    padding-top: 10px;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+}
+
+.health_page a.num {
+    padding-top: 9px;
+    font-size: 1.4rem;
+}
+
+.health_page a.num.on {
+    border-color: #000000;
+    background: black;
+    color: #000000;
+}
+
+.health_page a:first-child {
+    border-left: 5px solid #000000;
+}
+

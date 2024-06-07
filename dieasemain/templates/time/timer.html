@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-3">
+    <div class="health_title">
+        <strong>복약알림</strong>
+        <p>제시간에 맞춰 약을 복용해봐요</p>
+    </div>
+
+    <table class="table">
+        <div class="health_wrapH">
+            <div class="health_list">
+                <div class="top">
+                    <div class="title">타이머</div>
+                </div>
+                <div>
+                    <div id="timer">00:00:00</div>
+                    <button onclick="setAlarm(1)" >1분</button>
+                    <button onclick="setAlarm(5)" >5분</button>
+                    <button onclick="setAlarm(30)" >30분</button>
+                    <button onclick="setAlarm(60)" >1시간</button>
+                    <button onclick="resetTimer()" >리셋</button>
+<!--                    style="font-size: 16px; padding: 10px 20px;"-->
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
+</div>
+<script>
+    let timerInterval;
+    let hours = 0, minutes = 0, seconds = 0;
+
+    function startTimer() {
+        clearInterval(timerInterval);
+        timerInterval = setInterval(decrementTimer, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        hours = minutes = seconds = 0;
+        updateTimerDisplay();
+    }
+
+    function decrementTimer() {
+        if (hours === 0 && minutes === 0 && seconds === 0) {
+            alert('알람이 울립니다!');
+            stopTimer();
+        } else {
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    hours--;
+                    minutes = 59;
+                    seconds = 59;
+                } else {
+                    minutes--;
+                    seconds = 59;
+                }
+            } else {
+                seconds--;
+            }
+            updateTimerDisplay();
+        }
+    }
+
+    function updateTimerDisplay() {
+        document.getElementById('timer').innerText = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+
+    function pad(value) {
+        return value < 10 ? '0' + value : value;
+    }
+
+    function setAlarm(timeInMinutes) {
+        // Convert time to seconds
+        let timeInSeconds = timeInMinutes * 60;
+
+        // Add time to current timer
+        seconds += timeInSeconds;
+        if (seconds >= 60) {
+            minutes += Math.floor(seconds / 60);
+            seconds %= 60;
+        }
+        if (minutes >= 60) {
+            hours += Math.floor(minutes / 60);
+            minutes %= 60;
+        }
+
+        // Start timer
+        startTimer();
+    }
+</script>
+{% endblock %}

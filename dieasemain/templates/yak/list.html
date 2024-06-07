@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container my-3">
+    <div class="game_title">
+        <strong>약정보를 불러와요</strong>
+        <p>호소하는 증상과 관련된 약을 알려줘요</p>
+    </div>
+
+    <form action="{{ url_for('yak.search') }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" style="width: 50%; padding: 5px" placeholder="증상을 입력해요"  name="search_query1">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">검색</button>
+            </div>
+        </div>
+    </form>
+  <div style="background: #dddd">
+    <table class="table">
+        <tbody>
+        {% if data %}
+        <div>
+            <p> 총 {{totalCount}} 개의 약 정보가 있습니다. </p>
+
+
+            <form action="{{ url_for('yak.search') }}" method="GET">
+                <p> 한번에 불러올 갯수를 선택하세요</p>
+                <select id="numOfRows" name="numOfRows">
+                    <option value="5" {% if numOfRows== 5 %}selected{% endif %}>5</option>
+                    <option value="10" {% if numOfRows== 10 %}selected{% endif %}>10</option>
+                    <option value="20" {% if numOfRows== 20 %}selected{% endif %}>20</option>
+                    <option value="30" {% if numOfRows== 30 %}selected{% endif %}>30</option>
+                    <script>
+                        // 페이지당 항목 수를 변경할 때마다 페이지를 다시로드하여 URL에 변경된 값이 반영되도록 함
+                        document.getElementById('numOfRows').addEventListener('change', function () {
+                            var selectedNumOfRows = this.value;
+                            var urlParams = new URLSearchParams(window.location.search);
+                            urlParams.set('numOfRows', selectedNumOfRows);
+                            window.location.href = window.location.pathname + '?' + urlParams.toString();
+                        });
+                    </script>
+                </select>
+                <!--            <input type="text"  placeholder="약 이름을 입력하세요" name="search_query">-->
+                <!--                <button class="btn btn-outline-secondary" type="submit">검색</button>-->
+            </form>
+        </div>
+
+
+        {% for item in data %}
+        <a href="{{ url_for('yak.detail', itemSeq=item['itemSeq'], itemName=item['itemName']) }}">{{item.itemName}}</a>
+        <p></p>
+        <div></div>
+        {% endfor %}
+
+<!--        <p> 뭔가 불러왔습니다.</p>-->
+        {% else %}
+        <tr>
+            <td colspan="3"> 약 정보가 없습니다...</td>
+        </tr>
+        {% endif %}
+
+    </table>
+
+
+    {% if current_page > 1 %}
+    <a href="{{ url_for('yak.list', page=1) }}">처음</a>
+    <a href="{{ url_for('yak.list', page=current_page - 1) }}">이전</a>
+    {% endif %}
+
+    {% if current_page < total_pages %}
+    <a href="{{ url_for('yak.list', page=current_page + 1) }}">다음</a>
+    <a href="{{ url_for('yak.list', page=total_pages) }}">마지막</a>
+    {% endif %}
+
+
+    //
+    {% if data %}
+
+    <div>
+        {% set start_page = ((current_page - 1) // 10) * 10 + 1 %}
+        {% set end_page = start_page + 9 %}
+        {% if end_page > total_pages %}
+        {% set end_page = total_pages %}
+        {% endif %}
+
+        {% if current_page > 10 %}
+        <a href="{{ url_for('yak.list', page=start_page-10, search_query1=request.args.get('search_query1', ''), numOfRows=numOfRows) }}">이전</a>
+        {% endif %}
+
+        {% for page in range(start_page, end_page + 1) %}
+        {% if page == current_page %}
+        <strong>{{ page }}</strong>
+        {% else %}
+        <a href="{{ url_for('yak.list', page=page, search_query1=request.args.get('search_query1', ''), numOfRows=numOfRows) }}">{{
+            page }}</a>
+        {% endif %}
+        {% endfor %}
+
+        {% if end_page < total_pages %}
+        <a href="{{ url_for('yak.list', page=start_page+10, search_query1=request.args.get('search_query1', ''), numOfRows=numOfRows) }}">다음</a>
+        {% endif %}
+    </div>
+    {% else %}
+    <p>검색 결과가 없습니다.</p>
+    {% endif %}
+    <p>페이지: {{ current_page }} / {{ total_pages }}</p>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,154 @@
+@media (max-width: 1000px) {
+    .board_wrap {
+        width: 100%;
+        min-width: 320px;
+        padding: 0 30px;
+        box-sizing: border-box;
+    }
+
+    .board_list .num,
+    .board_list .writer,
+    .board_list .count {
+        display: none;
+    }
+
+    .board_list .title {
+        text-indent: 10px;
+    }
+
+    .board_list .top .title {
+        text-indent: 0;
+    }
+
+    .board_list .date {
+        width: 40%;
+    }
+
+    .board_page a {
+        width: 26px;
+        height: 26px;     
+    }
+
+    .board_page a.bt {
+        padding-top: 7px;
+    }
+
+    .board_page a.num {
+        padding-top: 6px;
+    }
+
+    .board_view .info dl{
+        width: 50%;
+        padding: 0;
+    }
+
+    .board_view .info dl:nth-child(-n+2) {
+        margin-bottom: 5px;
+    }
+
+    .board_view .info dl::before {
+        display: none;
+    }
+
+    .board_view .info dl dt,
+    .board_view .info dl dd {
+        font-size: 1.2rem;
+    }
+
+    .board_write .info dl {
+        width: 49%;
+    }
+
+    .board_write .info dl:first-child {
+        margin-right: 2%;
+    }
+
+    .board_write .title dt,
+    .board_write .info dt {
+        display: none;
+    }
+
+    .board_write .title dd,
+    .board_write .info dd {
+        width: 100%;
+    }
+
+    .board_write .title input [type="text"],
+    .board_write .info input [type="text"],
+    .board_write .info input [type="password"] {
+        width: 100%;
+    }
+
+    .game_list .num,
+    .game_list .writer,
+    .game_list .count {
+        display: none;
+    }
+
+    .game_list .title {
+        text-indent: 10px;
+    }
+
+    .game_list .top .title {
+        text-indent: 0;
+    }
+
+    .game_list .date {
+        width: 40%;
+    }
+
+    .game_page a {
+        width: 26px;
+        height: 26px;     
+    }
+
+    .game_page a.bt {
+        padding-top: 7px;
+    }
+
+    .game_page a.num {
+        padding-top: 6px;
+    }
+
+    .game_view .info dl{
+        width: 50%;
+        padding: 0;
+    }
+
+    .game_view .info dl:nth-child(-n+2) {
+        margin-bottom: 5px;
+    }
+
+    .game_view .info dl::before {
+        display: none;
+    }
+
+    .game_view .info dl dt,
+    .game_view .info dl dd {
+        font-size: 1.2rem;
+    }
+
+    .game_write .info dl {
+        width: 49%;
+    }
+
+    .game_write .info dl:first-child {
+        margin-right: 2%;
+    }
+
+    .game_write .title dt,
+    .game_write .info dt {
+        display: none;
+    }
+
+    .game_write .title dd,
+    .game_write .info dd {
+        width: 100%;
+    }
+
+    .game_write .title input [type="text"],
+    .game_write .info input [type="text"],
+    .game_write .info input [type="password"] {
+        width: 100%;
+    }
+}

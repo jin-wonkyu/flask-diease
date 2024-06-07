@@ -1,0 +1,8 @@
+@import url(main.css); /*배경화면*/
+@import url(login.css);
+@import url(list.css); /*자유게시판*/
+@import url(style.css);
+@import url(game.css);
+@import url(health.css);
+@import url(hospital.css);
+@import url(yak.css);
