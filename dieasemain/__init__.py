@@ -4,8 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
 
-import config
-
 naming_convention = {
     "ix": 'ix_%(column_0_label)s',
     "uq": "uq_%(table_name)s_%(column_0_name)s",
@@ -20,8 +18,7 @@ migrate = Migrate()
 
 def create_app():
     app = Flask(__name__)
-    app.config.from_object(config)
-
+    app.config.from_envvar('APP_CONFIG_FILE')
     # ORM db와 마이그레이트를 초기화함
     db.init_app(app) #초기화 하는 부분
     if app.config['SQLALCHEMY_DATABASE_URI'].startswith("sqlite"):
