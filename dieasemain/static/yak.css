@@ -1,3 +1,23 @@
+.game_wrapG {
+    width: 1000px;
+    margin: 100px auto;
+}
+
+.game_title {
+    margin-bottom: 30px;
+}
+
+.game_title strong {
+    font-size: 3rem;
+    color: #000000;
+}
+
+.game_title p {
+    margin-top: 5px;
+    font-size: 1.4rem;
+    color: #000000;
+}
+
 .search-form, .rows-form {
     margin-bottom: 40px;
 }

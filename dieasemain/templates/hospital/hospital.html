@@ -182,25 +182,49 @@
         cursor: default;
         color: #777;
     }
+
+    #map {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #searchButton {
+        position: absolute;
+        top: 50px;
+        right: 100px;
+        margin: 20px;
+        z-index: 100;
+    }
+
+    #searchButton button {
+        padding: 10px;
+        font-size: 2em;
+        color: rgb(247, 64, 64);
+        border: 5px solid #ddd;
+        border-radius: 5px;
+    }
 </style>
+
+
 <div class="container my-3">
     <div class="health_title">
         <strong>병원찾기</strong>
         <p>병원과 약국 위치를 카테고리를 통해 알 수 있어요</p>
     </div>
 
+
     <p>현재위치 : <span id="location"></span></p>
     <p>이동위치 : <span id="result"></span></p>
-
-
     <div class="map_wrap">
-        <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-        <ui id="caategory">
-            <li id="PM9" data-order="2">
-                <span class="category_bg pharmacy"></span>
-                약국
-            </li>
-        </ui>
+        <div id="map">
+            <div id="searchButton">
+                <button onclick="searchButton('병원')">병원</button>
+                <button onclick="searchButton('약국')">약국</button>
+            </div>
+        </div>
+
         <div id="menu_wrap" class="bg_white">
             <div class="option">
                 <div>
@@ -218,31 +242,8 @@
 
     <script type="text/javascript"
             src="//dapi.kakao.com/v2/maps/sdk.js?appkey=375e76d853fc04a171aa13ed8b19cbb6&libraries=services"></script>
-    <script>
-        let latitude;
-        let longitude;
-        let locationOk = false;
-
-        const x = document.getElementById("location");
-
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-                locationOk = true
-                return;
-            } else {
-                x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-
-        function showPosition(position) {
-            latitude = position.coords.latitude;
-            longitude = position.coords.longitude;
-            x.innerHTML = "Latitude: " + position.coords.latitude +
-                "<br>Longitude: " + position.coords.longitude;
-        }
-
-    </script>
+    <script type="text/javascript" src="../../static/map.js"></script>
+<!--    <script type="text/javascript" src="map.js"></script>-->
 
     <script>
         // 마커를 담을 배열입니다
@@ -266,12 +267,6 @@
 
 
         function showMap() {
-            // 마커를 클릭했을 때 해당 장소의 상세정보를 보여줄 커스텀오버레이입니다
-            var placeOverlay = new kakao.maps.CustomOverlay({zIndex: 1}),
-                contentNode = document.createElement('div'), // 커스텀 오버레이의 컨텐츠 엘리먼트 입니다
-                markers = [], // 마커를 담을 배열입니다
-                currCategory = ''; // 현재 선택된 카테고리를 가지고 있을 변수입니다
-
             var mapContainer = document.getElementById('map'); // 지도를 표시할 div
             mapOption = {
                 center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
@@ -334,6 +329,24 @@
 
         // 키워드로 장소를 검색합니다
         //searchPlaces();
+
+        async function searchButton(keyword) {
+
+            const currentCoordinate = await getCurrentCoordinate();
+            currentCoordinate.LatLngBounds
+
+            var options = {
+                x: longitude,
+                y: latitude,
+                //location: currentCoordinate,
+                radius: 10000,
+                sort: kakao.maps.services.SortBy.DISTANCE,
+            };
+
+            // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+            ps.keywordSearch(keyword, placesSearchCB, options);
+
+        }
 
         // 키워드 검색을 요청하는 함수입니다
         async function searchPlaces() {
@@ -569,7 +582,6 @@
 
 
     </script>
-
 </div>
 
 {% endblock %}

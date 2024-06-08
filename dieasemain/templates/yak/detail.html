@@ -1,40 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="container my-3">
+    <div class="game_title">
+        <strong>약품추천</strong>
+        <p>호소하는 증상과 관련된 약을 알려줘요</p>
+    </div>
 
-<div style="padding: 4%">
-<h1>제품명 : {{ detail_data['name'] }}</h1>
-<table class="table">
-    <thead>
-    <tr>
-        <th>제조사</th>
-        <th>효능효과</th>
-        <th>사용방법</th>
-        <th>주의사항 경고</th>
-        <th>주의사항</th>
-        <th>상호작용</th>
-        <th>부작용</th>
-        <th>보관방법</th>
-        <th>제품 사진</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
+    <div style="padding: 1%">
+        <h1>제품명 : {{ detail_data['name'] }}</h1>
+        <table style="width: 100%; padding: 5px;" class="table">
+            <thead>
+            <tr>
+                <th>제조사</th>
+                <th>효능효과</th>
+                <th>사용방법</th>
+                <th>주의사항 경고</th>
+                <th>주의사항</th>
+                <th>상호작용</th>
+                <th>부작용</th>
+                <th>보관방법</th>
+                <th>제품 사진</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
 
-        <td>제조사: {{ detail_data['entpName'] }}</td>
-        <td>효능효과: {{ detail_data['efcyQesitm'] }}</td>
-        <td>사용방법: {{ detail_data['useMethodQesitm'] }}</td>
-        <td>주의사항 경고: {{ detail_data['atpnWarnQesitm'] }}</td>
-        <td>주의사항: {{ detail_data['atpnQesitm'] }}</td>
-        <td>상호작용: {{ detail_data['intrcQesitm'] }}</td>
-        <td>부작용: {{ detail_data['seQesitm'] }}</td>
-        <td>보관방법: {{ detail_data['depositMethodQesitm'] }}</td>
-        <td>제품 사진:
-            <img src="{{ detail_data['itemImage'] or url_for('static', filename='default_image.png') }}" width="200" height="200"/>
-        </td>
-    </tr>
-    </tbody>
-</table>
+                <td>제조사: {{ detail_data['entpName'] }}</td>
+                <td>효능효과: {{ detail_data['efcyQesitm'] }}</td>
+                <td>사용방법: {{ detail_data['useMethodQesitm'] }}</td>
+                <td>주의사항 경고: {{ detail_data['atpnWarnQesitm'] }}</td>
+                <td>주의사항: {{ detail_data['atpnQesitm'] }}</td>
+                <td>상호작용: {{ detail_data['intrcQesitm'] }}</td>
+                <td>부작용: {{ detail_data['seQesitm'] }}</td>
+                <td>보관방법: {{ detail_data['depositMethodQesitm'] }}</td>
+                <td>제품 사진:
+                    <img src="{{ detail_data['itemImage'] or url_for('static', filename='default_image.png') }}"
+                         width="200"
+                         height="200"/>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
-
-{% endblock %}
+    {% endblock %}

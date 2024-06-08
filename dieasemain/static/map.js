@@ -6,19 +6,19 @@ const x = document.getElementById("location");
 
 function getLocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-      locationOk = true
-      return;
-    } else { 
-      x.innerHTML = "Geolocation is not supported by this browser.";
+        navigator.geolocation.getCurrentPosition(showPosition);
+        locationOk = true
+        return;
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
-  
+
 function showPosition(position) {
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
 }
 
 // // 위치정보 사용

@@ -7,9 +7,13 @@
     }
 </style>
 
-<h1>자유게시판</h1>
 <div class="container my-3"> <!--my 는 마진 y 를 말한다 위아래로 여백을 주는 역할-->
     <div class="row my-3">
+        <div class="game_title">
+            <strong>자유게시판</strong>
+            <p>수현아 할 수 있다 지도는 너에게 맡기마</p>
+        </div>
+
         <div class="col-6">
             <a href="{{ url_for('question.create') }}" class="btn btn-primary">질문 등록하기</a>
         </div>
@@ -32,7 +36,7 @@
 
     <table class="table">
         <thead>
-        <tr> <!--테이블, tr태그를 검게 만듬-->
+        <tr>
             <th>번호</th>
             <th style="width:50%">제목</th>
             <th>조회수</th>
